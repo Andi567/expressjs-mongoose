@@ -3,7 +3,7 @@ import express from "express";
 import countryRoutes from "./routes/country";
 
 import { bot } from "./lib/bot";
-import { BinanceP2P } from "./binance/api.js";
+import { BinanceP2P } from "./binance/api";
 
 if (!process.env.BINANCE_ACCESS_KEY)
   throw new Error("Please add a Binance access key");

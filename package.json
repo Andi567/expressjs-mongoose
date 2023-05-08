@@ -11,6 +11,7 @@
     "start": "node dist/index.js"
   },
   "dependencies": {
+    "@aws-sdk/client-ec2": "^3.328.0",
     "axios": "^1.4.0",
     "express": "^4.17.1",
     "js-sha256": "^0.9.0",

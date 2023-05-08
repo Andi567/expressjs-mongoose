@@ -3,6 +3,14 @@ import axios, { AxiosInstance } from "axios";
 import { createSignature, objectToQuerystring } from "./utils";
 import { ORDER_TYPES } from "./constants";
 import { URLS } from "./urls";
+import {
+  BinanceP2PConfig,
+  FetchOrderChatMessagesParams,
+  FetchTradeHistoryParams,
+  PerformP2PAdsSearchParams,
+  ReleaseOrderFundsParams,
+  UpdateAdParams,
+} from "./types";
 
 export class BinanceP2P {
   baseUrl?: string;

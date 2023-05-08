@@ -8,6 +8,7 @@ import { Markup } from "telegraf";
 import { BinanceP2P } from "./binance/api";
 import { getInstInfo, startEBSInst, stopEBSInst } from "./aws/api";
 import { mainEc2Id, proxyEc2Ids } from "./aws/data";
+import { ORDER_TYPES } from "./binance/constants";
 
 if (!process.env.BINANCE_ACCESS_KEY)
   throw new Error("Please add a Binance access key");
@@ -94,6 +95,22 @@ app.use(express.json());
 
 app.get("/", async (req, res) => {
   res.json({ message: "Please visit /countries to view all the countries" });
+});
+
+app.get("/trade-history", async (req, res) => {
+  const tradeType = String(req.query.trade_type);
+
+  if (!tradeType) {
+    return res.json({ error: "Missing trade_type" });
+  }
+
+  if (tradeType !== ORDER_TYPES.BUY && tradeType !== ORDER_TYPES.SELL) {
+    return res.json({ error: "Invalid trade_type" });
+  }
+  //@ts-ignore
+  const result = await binanceP2P.fetchTradeHistory({ tradeType });
+
+  res.json(result);
 });
 
 app.use("/countries", countryRoutes);

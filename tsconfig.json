@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "outDir": "dist",
-    "typeRoots": ["./node_modules/@types", "./src/types"],
     "incremental": true,
     "target": "es6",
     "module": "commonjs",
